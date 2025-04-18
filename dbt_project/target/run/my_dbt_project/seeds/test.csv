@@ -1,0 +1,12 @@
+
+    
+    
+    truncate table "ANALYTICS"."SCHEMA"."TEST";
+    -- dbt seed --
+    
+            insert into ANALYTICS.SCHEMA.test (country_code, country_name) values
+            (%s,%s),(%s,%s)
+        
+
+;
+  

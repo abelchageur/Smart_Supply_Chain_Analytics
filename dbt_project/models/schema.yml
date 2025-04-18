@@ -1,0 +1,55 @@
+version: 2
+
+sources:
+  - name: analytics
+    schema: SCHEMA
+    tables:
+      - name: DATA
+        description: "Raw data containing information about orders, customers, products, and shipping."
+
+models:
+  - name: stg_orders
+    description: "Staging model for orders data with basic cleaning and transformations."
+    columns:
+      - name: ORDER_ID
+        description: "Unique identifier for the order."
+        tests:
+          - not_null
+          - unique
+
+      - name: CUSTOMER_ID
+        description: "Unique identifier for the customer."
+        tests:
+          - not_null
+
+      - name: FULL_CUSTOMER_NAME
+        description: "Full name of the customer, concatenated from first and last name."
+
+      - name: CUSTOMER_CITY
+        description: "City where the customer resides."
+
+      - name: CUSTOMER_COUNTRY
+        description: "Country where the customer resides."
+
+      - name: CUSTOMER_SEGMENT
+        description: "Segment to which the customer belongs (e.g., VIP, Regular)."
+
+      - name: ORDER_DATE
+        description: "Date when the order was placed."
+        tests:
+          - not_null
+
+      - name: SHIPPING_DATE
+        description: "Date when the order was shipped."
+
+      - name: SALES
+        description: "Total sales amount for the order."
+
+      - name: BENEFIT_PER_ORDER
+        description: "Benefit per order."
+
+      - name: LATE_DELIVERY_RISK
+        description: "Risk of late delivery for the order."
+
+      - name: DELIVERY_STATUS
+        description: "Status of the delivery (e.g., Delivered, In Transit)."
