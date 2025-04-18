@@ -1,3 +1,4 @@
+# si pour la creation de topic
 docker exec -it kafka kafka-topics --create \
   --topic csv_topic \
   --bootstrap-server localhost:9092 \
@@ -5,15 +6,18 @@ docker exec -it kafka kafka-topics --create \
   --replication-factor 1 \
   --config retention.ms=180000
 
-
+# celui la pour utilisation de api avec producer send data row after row to topic
 curl -X POST http://localhost:8000/ingest_csv/
-# delete
+
+# if you want delete topic
 docker exec -it kafka kafka-topics --delete \
   --topic csv_topic \
   --bootstrap-server localhost:9092
 
+# voire les donnees dans le topic 
 docker exec -it kafka kafka-console-consumer --bootstrap-server localhost:9092 --topic csv_topic --from-beginning
-#description 
+
+# voire description 
 docker exec -it kafka kafka-topics --describe --topic csv_topic --bootstrap-server localhost:9092
 #installation kafka 
 pip install kafka-python
